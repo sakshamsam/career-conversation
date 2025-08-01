@@ -1,66 +1,84 @@
----
-title: career_conversation
-app_file: 1_foundations/app.py
-sdk: gradio
-sdk_version: 5.34.2
----
-## Master AI Agentic Engineering -  build autonomous AI Agents
+**🤖 Saksham Jain: AI-Powered Career Chatbot**
+An intelligent, interactive career chatbot designed to act as a digital professional persona for Saksham Jain. This application serves as a dynamic resume, capable of answering questions about my background, skills, and projects in a professional and engaging manner.
 
-### 6 week journey to code and deploy AI Agents with OpenAI Agents SDK, CrewAI, LangGraph, AutoGen and MCP
+✨ **Key Features**
+Interactive Professional Persona: Acts as a knowledge base for my career, experience, and skills, providing instant and accurate answers to inquiries from recruiters or potential clients.
 
-![Autonomous Agent](assets/autonomy.png)
+**Dynamic Data Ingestion:** The chatbot's knowledge is sourced from a collection of documents, including a resume, project summaries, and a comprehensive FAQ guide. This allows for easy updates and ensures all responses are based on factual information.
 
-_If you're looking at this in Cursor, please right click on the filename in the Explorer on the left, and select "Open preview", to view the formatted version._
+**Intelligent Tool Use & Lead Capture:** The application is equipped with a powerful lead-capture mechanism. It is designed to subtly and professionally ask for user details (name, email, mobile number) and uses an integrated tool to securely record this information.
 
-I couldn't be more excited to welcome you! This is the start of your 6 week adventure into the powerful, astonishing and often surreal world of Agentic AI.
+**Actionable Feedback Loop:** The bot can identify questions it cannot answer. It automatically uses a tool to record these "unknown" questions, providing valuable data for continuous improvement of the knowledge base.
 
-### Before you begin
+**Real-time Notifications:** An integrated Push notification system ensures that I am instantly alerted when a potential lead provides their contact information or when the bot encounters a question it cannot answer, enabling immediate follow-up.
 
-I'm here to help you be most successful! Please do reach out if I can help, either in the platform or by emailing me direct (ed@edwarddonner.com). It's always great to connect with people on LinkedIn to build up the community - you'll find me here:  
-https://www.linkedin.com/in/eddonner/  
-And this is new to me, but I'm also trying out X/Twitter at [@edwarddonner](https://x.com/edwarddonner) - if you're on X, please show me how it's done 😂  
+**Intuitive Web Interface:** Built with Gradio, the application provides a simple, clean chat interface accessible via a web browser, ensuring a seamless user experience.
 
-### The not-so-dreaded setup instructions
+🏗️ **Project Architecture**
+The core of the application is a Python script that orchestrates communication between the user interface, an advanced LLM (GPT-4o-mini), and a suite of custom tools.
 
-Perhaps famous last words: but I really, truly hope that I've put together an environment that will be not too horrific to set up!
+**Data Ingestion:** Upon initialization, the Me class reads and processes data from local files (FAQs.txt, Resume.pdf, Projects.txt). This context is then used to create a detailed system prompt.
 
-- Windows people, your instructions are [here](setup/SETUP-PC.md)
-- Mac people, yours are [here](setup/SETUP-mac.md)
-- Linux people, yours are [here](setup/SETUP-linux.md)
+**LLM Integration:** The chat function sends the user's message and the detailed system prompt to the OpenAI API. The LLM acts as the core conversational engine, using the provided context to generate professional responses.
 
-Any problems, please do contact me.
+**Tooling & Function Calling:** The LLM is empowered with two key functions: record_user_details and record_unknown_question. When the LLM determines a user's intent matches a tool's purpose (e.g., providing an email), it automatically calls the function.
 
-### Important notes for CrewAI week (Week 3)
+**External Services:** These functions interact with the Pushover API to send real-time, actionable notifications.
 
-Windows PC users: you will need to have checked the "gotcha #4" at the top of the [SETUP-PC](setup/SETUP-PC.md) instructions -- installing Microsoft Build Tools.  
-If you don't do this, then CrewAI will fail with an obscure error involving Chroma..
+**Gradio UI:** A lightweight web application is deployed using Gradio to provide an intuitive and accessible interface for user interaction.
+
+🚀 **Skills Demonstrated**
+This project showcases a practical application of a variety of in-demand skills:
+
+**Product Development:** Conceptualizing and building a solution that provides clear user value (instant answers) and business value (lead generation, data collection).
+
+**AI/ML Application:** Leveraging an advanced LLM and prompt engineering to create a professional and domain-specific chatbot persona.
+
+**API Integration:** Seamlessly integrating with multiple third-party APIs (OpenAI, Pushover) to build a sophisticated and feature-rich application.
+
+**Python Development:** Building a robust, modular, and well-structured Python application.
+
+**DevOps & Deployment:** The code is designed for easy local deployment and containerization, with clear instructions for environment setup.
+
+🛠️ **Setup & Installation**
+To run this chatbot locally, follow these steps:
+
+Prerequisites
+Python 3.9+
+
+pip package manager
+
+1. Set up Pushover
+Sign up for an account on Pushover.
+
+Create a new application to get your Application API Token.
+
+Find your User Key in the Pushover dashboard.
+
+2. Set up OpenAI
+Sign up for an account and get an API key from OpenAI.
+
+3. Clone the repository and install dependencies
+# Clone this repository to your local machine
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
+
+# Install the required Python libraries
+pip install openai python-dotenv pypdf requests gradio
 
 
-Then, you will need to run this command in a Cursor Terminal in the project root directory in order to run the Crew commands:  
-`uv tool install crewai`   
-And in case you've used Crew before, it might be worth doing this to make sure you have the latest:  
-`uv tool upgrade crewai`  
+4. Create the necessary files
+Create a .env file in the project's root directory with your API keys:
 
-Then please keep in mind for Crew:
+OPENAI_API_KEY="your_openai_api_key"
+PUSHOVER_TOKEN="your_pushover_app_token"
+PUSHOVER_USER="your_pushover_user_key"
 
-1. There are two ways that you can work on the CrewAI project in week 3. Either review the code for each project while I build it, and then do `crewai run` to see it in action. Or if you prefer to be more hands-on, then create your own Crew project from scratch to mirror mine; for example, create `my_debate` to go alongside `debate`, and write the code alongside me. Either approach works!  
-2. Windows users: there's a new issue that was recently introduced by one of Crew's libraries. Until this is fixed, you might get a "unicode" error when you try to run `crewai create crew`.  If that happens, please try running this command in the Terminal first: `$env:PYTHONUTF8 = "1"`  
-3. Gemini users: in addition to a key in your `.env` file for `GOOGLE_API_KEY`, you will need an identical key for `GEMINI_API_KEY`
+Ensure your data files (FAQs.txt, Resume.pdf, Projects.txt) are located in the 1_foundations/me/ directory as referenced in the code.
 
-### Super useful resources
+5. Run the application
+# Start the Gradio server
+python your_main_file_name.py
 
-- The course [resources](https://edwarddonner.com/2025/04/21/the-complete-agentic-ai-engineering-course/) with videos
-- Many essential guides in the [guides](guides/01_intro.ipynb) section
-- The [troubleshooting](setup/troubleshooting.ipynb) notebook
 
-### API costs - please read me!
-
-This course does involve making calls to OpenAI and other frontier models, requiring an API key and a small spend, which we set up in the SETUP instructions. If you'd prefer not to spend on API calls, there are cheaper alternatives like DeepSeek and free alternatives like using Ollama!
-
-Details are [here](guides/09_ai_apis_and_ollama.ipynb).
-
-Be sure to monitor your API costs to ensure you are totally happy with any spend. For OpenAI, the dashboard is [here](https://platform.openai.com/usage).
-
-### ABOVE ALL ELSE -
-
-Be sure to have fun with the course! You could not have picked a better time to be learning about Agentic AI. I hope you enjoy every single minute! And if you get stuck at any point - [contact me](https://www.linkedin.com/in/eddonner/).
+This will launch a local server, and you can access the chatbot at the provided URL in your terminal.
