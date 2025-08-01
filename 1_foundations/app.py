@@ -18,14 +18,18 @@ def push(text):
             "message": text,
         }
     )
+    print("We are at push function with text: ", text)
 
 
-def record_user_details(email, name="Name not provided", notes="not provided"):
-    push(f"Recording {name} with email {email} and notes {notes}")
+def record_user_details(email="Email not provided", mobile_number="Number not provided", name="Name not provided", notes="not provided"):
+    if not email and not mobile_number:
+        return {"error": "Either email or mobile_number is required"}
+    push(f"Recording {name} with email {email}, mobile number {mobile_number} and notes {notes}")
+    print(f"We are at record_user_details function with email: {email}, mobile number: {mobile_number}, name: {name} and notes: {notes}")
     return {"recorded": "ok"}
 
 def record_unknown_question(question):
-    push(f"Recording {question}")
+    push(f"Recording: {question} as unknown question")
     return {"recorded": "ok"}
 
 record_user_details_json = {
@@ -38,6 +42,10 @@ record_user_details_json = {
                 "type": "string",
                 "description": "The email address of this user"
             },
+            "mobile_number": {
+                "type": "string",
+                "description": "The mobile number of this user"
+            },
             "name": {
                 "type": "string",
                 "description": "The user's name, if they provided it"
@@ -48,7 +56,7 @@ record_user_details_json = {
                 "description": "Any additional information about the conversation that's worth recording to give context"
             }
         },
-        "required": ["email"],
+        "required": [],
         "additionalProperties": False
     }
 }
@@ -77,15 +85,23 @@ class Me:
 
     def __init__(self):
         self.openai = OpenAI()
-        self.name = "Ed Donner"
-        reader = PdfReader("me/linkedin.pdf")
-        self.linkedin = ""
+        self.name = "Saksham Jain"
+        ## reader = PdfReader("me/FAQs.txt")
+        ## self.faq = ""
+        ##for page in reader.pages:
+        ##    text = page.extract_text()
+        ##    if text:
+        ##        self.faq += text
+        with open("1_foundations/me/FAQs.txt", "r", encoding="utf-8") as f:
+            self.faqs = f.read()
+        reader = PdfReader("1_foundations/me/Resume.pdf")
+        self.resume = ""
         for page in reader.pages:
             text = page.extract_text()
             if text:
-                self.linkedin += text
-        with open("me/summary.txt", "r", encoding="utf-8") as f:
-            self.summary = f.read()
+                self.resume += text
+        with open("1_foundations/me/Projects.txt", "r", encoding="utf-8") as f:
+            self.projects = f.read()
 
 
     def handle_tool_call(self, tool_calls):
@@ -93,22 +109,22 @@ class Me:
         for tool_call in tool_calls:
             tool_name = tool_call.function.name
             arguments = json.loads(tool_call.function.arguments)
-            print(f"Tool called: {tool_name}", flush=True)
+            print(f"We are at handle_tool_call. Tool called: {tool_name} with arguments: {arguments}", flush=True)
             tool = globals().get(tool_name)
             result = tool(**arguments) if tool else {}
             results.append({"role": "tool","content": json.dumps(result),"tool_call_id": tool_call.id})
         return results
     
     def system_prompt(self):
-        system_prompt = f"You are acting as {self.name}. You are answering questions on {self.name}'s website, \
-particularly questions related to {self.name}'s career, background, skills and experience. \
-Your responsibility is to represent {self.name} for interactions on the website as faithfully as possible. \
-You are given a summary of {self.name}'s background and LinkedIn profile which you can use to answer questions. \
-Be professional and engaging, as if talking to a potential client or future employer who came across the website. \
-If you don't know the answer to any question, use your record_unknown_question tool to record the question that you couldn't answer, even if it's about something trivial or unrelated to career. \
-If the user is engaging in discussion, try to steer them towards getting in touch via email; ask for their email and record it using your record_user_details tool. "
+        system_prompt = f"You are acting as {self.name}. You answer questions on {self.name}'s website, specifically about his career, background, skills, and experience.\
+    You represent {self.name} faithfully and professionally, as if speaking to a potential client or employer. \
+    You have access to a list of FAQs previously answered by {self.name}, as well as a summary of their resume and Projects. Use these to guide your responses. \
+    If a user asks something unrelated to {self.name}'s career or background, respond humorously that you don’t know. \
+    For any question you cannot answer—even if it's trivial — use the record_unknown_question tool. \
+    Try to formally and subtly ask user about their details like name, phone number or email and use the record_user_details tool to save it. \
+    Be engaging and helpful, but always professional."
 
-        system_prompt += f"\n\n## Summary:\n{self.summary}\n\n## LinkedIn Profile:\n{self.linkedin}\n\n"
+        system_prompt += f"\n\n## FAQs:\n{self.faqs}\n\n## Resume:\n{self.resume}\n\n## Projects:\n{self.projects}"
         system_prompt += f"With this context, please chat with the user, always staying in character as {self.name}."
         return system_prompt
     
@@ -116,7 +132,7 @@ If the user is engaging in discussion, try to steer them towards getting in touc
         messages = [{"role": "system", "content": self.system_prompt()}] + history + [{"role": "user", "content": message}]
         done = False
         while not done:
-            response = self.openai.chat.completions.create(model="gpt-4o-mini", messages=messages, tools=tools)
+            response = self.openai.chat.completions.create(model="gpt-4o-mini", messages=messages, tools=tools, tool_choice="auto")
             if response.choices[0].finish_reason=="tool_calls":
                 message = response.choices[0].message
                 tool_calls = message.tool_calls
@@ -128,7 +144,17 @@ If the user is engaging in discussion, try to steer them towards getting in touc
         return response.choices[0].message.content
     
 
+# if __name__ == "__main__":
+#    me = Me()
+#    gr.ChatInterface(me.chat, type="messages").launch()
+
 if __name__ == "__main__":
     me = Me()
-    gr.ChatInterface(me.chat, type="messages").launch()
+    #gr.ChatInterface(me.chat, type="messages").launch(share=True)
+    gr.ChatInterface(me.chat, type="messages").launch(
+    share=True,           # Creates public link
+    server_name="0.0.0.0",  # Allow external connections
+    server_port=7860,     # Specify port
+    debug=True            # Enable debug mode
+    )
     

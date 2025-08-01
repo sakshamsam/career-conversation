@@ -1,0 +1,100 @@
+
+## 1. [IPO WhatsApp Alert](https://github.com/sakshamsam/ipo-whatsapp-alert)
+
+**Automated daily IPO updates sent to WhatsApp via Green API and GitHub Actions**
+
+### Description:
+
+Sends formatted messages about currently open IPOs to a WhatsApp number every day at 10:00 AM IST.
+
+### Key Features:
+
+* Auto-fetches live IPO data.
+* Filters and formats it with emojis, GMP, subscription info.
+* Sends alerts via WhatsApp using Green API.
+* Secured with GitHub Secrets, runs daily via GitHub Actions.
+
+### Tech Stack:
+
+`Python`, `GitHub Actions`, `Green API`
+
+### Use Case:
+
+Retail investors who want automated IPO alerts on WhatsApp.
+
+---
+
+## 2. [Smart Skimmer – AI Chrome Extension](https://github.com/sakshamsam/smart-skimmer)
+
+**AI-powered Chrome extension to auto-highlight key points in long web content**
+
+### Description:
+
+Skims long articles or research papers by highlighting important content using OpenAI's API.
+
+### Key Features:
+
+* Injects into any webpage to extract content.
+* Sends data to OpenAI API with smart prompts.
+* Highlights important lines in real time.
+* Optimized for performance (asynchronous and lazy-load friendly).
+
+### Tech Stack:
+
+`JavaScript`, `Chrome Extensions API`, `OpenAI API`
+
+### Use Case:
+
+Busy professionals, students, and readers looking to save time skimming online content.
+
+---
+
+## 3. [AI Course Generator](https://github.com/sakshamsam/ai-course-generator)
+
+**Web platform to create AI-generated, personalized learning courses**
+
+### Description:
+
+Generates dynamic, structured courses based on your topic, proficiency, and preferred depth.
+
+### Key Features:
+
+* Select topic, level, chapters, assessments.
+* Personalized AI-generated chapters.
+* Interactive learning: ask for ELI5, examples, video links.
+* Tracks chapter progress per user account.
+
+### Tech Stack:
+
+`React.js`, `Node.js/Express`, `MongoDB`, `Grok-3-mini-beta LLM API`
+
+### Use Case:
+
+Learners seeking structured and affordable education on any topic.
+
+---
+
+## 4. [Books Overflow](https://github.com/sakshamsam/booksoverflow)
+
+**No-code MVP for book recommendations with real user engagement**
+
+### Description:
+
+A curated book recommendation platform built entirely with no-code tools.
+
+### Key Features:
+
+* Designed using Softr.io (no-code).
+* 172 users and 62 subscribers in the first month.
+* Created GTM strategy and UI from competitor/user research.
+
+### Tech Stack:
+
+`Softr`
+
+### Marketing Stack:
+`LinkedIn`, `YouTube`, `Quora`
+
+### Use Case:
+
+Book lovers seeking curated suggestions based on interests.
