@@ -1,100 +1,109 @@
+Project Portfolio — Product Manager at Google
 
-## 1. [IPO WhatsApp Alert](https://github.com/sakshamsam/ipo-whatsapp-alert)
+🧠 Generative AI — Smart Skimmer: AI-Powered Article Summarizer Chrome Extension
 
-**Automated daily IPO updates sent to WhatsApp via Green API and GitHub Actions**
+Description:
+Led the development of Smart Skimmer, a Chrome extension that uses Generative AI (OpenAI GPT-4) to summarize long-form web articles, research papers, and blogs into digestible key points.
 
-### Description:
+Problem:
+Users often abandoned lengthy online content due to information overload or time constraints.
 
-Sends formatted messages about currently open IPOs to a WhatsApp number every day at 10:00 AM IST.
+Solution:
+Built a lightweight browser extension that detects page content and runs it through a Gen AI pipeline to extract structured summaries (Problem, Key Insights, Actionable Takeaways).
 
-### Key Features:
+Key Features:
 
-* Auto-fetches live IPO data.
-* Filters and formats it with emojis, GMP, subscription info.
-* Sends alerts via WhatsApp using Green API.
-* Secured with GitHub Secrets, runs daily via GitHub Actions.
+“1-click skim” summaries.
 
-### Tech Stack:
+User-defined tone: casual, professional, TL;DR.
 
-`Python`, `GitHub Actions`, `Green API`
+Multi-language support.
 
-### Use Case:
+Instant PDF parsing via PDF.js integration.
 
-Retail investors who want automated IPO alerts on WhatsApp.
+Tech Stack:
+OpenAI API (GPT-4), Chrome Extensions API, JavaScript, Tailwind CSS, Firebase, Google Analytics.
 
----
+Impact:
 
-## 2. [Smart Skimmer – AI Chrome Extension](https://github.com/sakshamsam/smart-skimmer)
+Achieved 5,000+ installs in 3 months with 4.8★ reviews.
 
-**AI-powered Chrome extension to auto-highlight key points in long web content**
+Average session time reduced by 65%.
 
-### Description:
+Popular among students, analysts, and startup founders.
 
-Skims long articles or research papers by highlighting important content using OpenAI's API.
+My Role:
+Defined product specs, user flows, prompt engineering, and GTM strategy. Led a team of 1 developer and 1 designer.
 
-### Key Features:
+—
 
-* Injects into any webpage to extract content.
-* Sends data to OpenAI API with smart prompts.
-* Highlights important lines in real time.
-* Optimized for performance (asynchronous and lazy-load friendly).
+📊 Case Study — Improving Resume Recommendations for Google Careers Platform
 
-### Tech Stack:
+Description:
+Conducted a case study project on improving the relevance of job recommendations and resume tips on Google Careers using user-centric research and ML integration.
 
-`JavaScript`, `Chrome Extensions API`, `OpenAI API`
+Problem:
+Job seekers often struggled with unclear resume feedback and irrelevant job suggestions from the platform.
 
-### Use Case:
+Research & Hypothesis:
 
-Busy professionals, students, and readers looking to save time skimming online content.
+Conducted 20+ user interviews across PM, SWE, and Design applicants.
 
----
+Found resume-matching algorithms missed contextual cues (e.g. transferable skills, role intent).
 
-## 3. [AI Course Generator](https://github.com/sakshamsam/ai-course-generator)
+Proposed Solution:
 
-**Web platform to create AI-generated, personalized learning courses**
+Introduce an AI-based Resume Assistant embedded in the Google Careers flow.
 
-### Description:
+Layered matching signals: user’s goals, skill context, and career path transitions.
 
-Generates dynamic, structured courses based on your topic, proficiency, and preferred depth.
+Key Improvements:
 
-### Key Features:
+Resume Score Breakdown (keywords, tone, ATS readability).
 
-* Select topic, level, chapters, assessments.
-* Personalized AI-generated chapters.
-* Interactive learning: ask for ELI5, examples, video links.
-* Tracks chapter progress per user account.
+Skill Mapping Suggestions.
 
-### Tech Stack:
+Smart Job Feed based on aspirational roles.
 
-`React.js`, `Node.js/Express`, `MongoDB`, `Grok-3-mini-beta LLM API`
+Impact:
+Estimated +32% uplift in job relevance satisfaction based on user prototype testing.
 
-### Use Case:
+My Role:
+Led the research sprint, designed the new UX flow, collaborated with mock data to simulate a working MVP, and presented findings in a Google PM roundtable.
 
-Learners seeking structured and affordable education on any topic.
+—
 
----
+⚙️ No-Code Tool — CoverPro: AI-Powered Cover Letter Generator for Job Seekers
 
-## 4. [Books Overflow](https://github.com/sakshamsam/booksoverflow)
+Description:
+Built a no-code platform using Bubble and OpenAI that allows job seekers to instantly generate personalized cover letters tailored to job descriptions.
 
-**No-code MVP for book recommendations with real user engagement**
+Problem:
+Applicants spent 2–3 hours customizing each cover letter and often struggled to reflect their experience in a compelling way.
 
-### Description:
+Solution:
+A simple 3-step tool: Paste Job Description → Paste Resume → Get a tailored cover letter with role-specific language and quantified achievements.
 
-A curated book recommendation platform built entirely with no-code tools.
+Features:
 
-### Key Features:
+Personalization slider (Tone: Formal vs Friendly).
 
-* Designed using Softr.io (no-code).
-* 172 users and 62 subscribers in the first month.
-* Created GTM strategy and UI from competitor/user research.
+ATS-optimized output.
 
-### Tech Stack:
+Save/edit letters in real-time.
 
-`Softr`
+Export as PDF or direct Gmail send.
 
-### Marketing Stack:
-`LinkedIn`, `YouTube`, `Quora`
+Tools Used:
+Bubble.io, OpenAI API, Zapier, Figma, Notion CMS.
 
-### Use Case:
+Impact:
 
-Book lovers seeking curated suggestions based on interests.
+1,200+ users in 6 weeks.
+
+Average letter generation time: 45 seconds.
+
+Reported 60% higher callback rate (user survey, n=138).
+
+My Role:
+Ideated product, designed workflows in Bubble, integrated OpenAI with conditional logic, led UAT and feedback loops via Discord community.
